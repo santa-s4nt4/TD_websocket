@@ -4,8 +4,8 @@ Build WebSocket connection between server and TouchDesigner using ws(Node.js) pa
 I created this project based on [kodai100's](https://github.com/kodai100/WebSocketWithTouchDesigner-WS).
 
 # Demo Movie
-<a src="https://photos.app.goo.gl/qm9fKmqzGSKNMfWE6">google photo
-</a>
+
+[google photo](https://photos.app.goo.gl/qm9fKmqzGSKNMfWE6)
 
 # Dependencies
 - Node.js
