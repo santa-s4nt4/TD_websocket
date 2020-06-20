@@ -10,16 +10,13 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-       https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
 
   <script>
     // Your web app's Firebase configuration
@@ -37,6 +34,7 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   </script>
+
   <div id='bg-color'></div>
   <div>
     Message from server (RGB) : <span id='message'></span>
@@ -70,17 +68,9 @@
   </script>
 
   <script>
+    var colorRef = firebase.database().ref('color')
+    colorRef.on('value', function (snapshot) {
 
-    var host = location.hostname;
-    console.log("Host : ", host);
-    var ws = new WebSocket('ws://' + host + ':8080');
-
-    // Callback from server message
-    ws.onmessage = function (event) {
-      var receivedMessage = event.data;
-      console.log(receivedMessage);
-      const color = receivedMessage.split(".0");
-      $('#message').html(color[0] + "," + color[1] + "," + color[2]);
 
       const sketch = function (p) {
         p.setup = function () {
@@ -90,12 +80,12 @@
         }
 
         p.draw = function () {
-          p.background(color[0], color[1], color[2]);
+          p.background(100, 0, 0);
         }
       }
 
       new p5(sketch, 'bg-color');
-    };
+    });
   </script>
 
 
