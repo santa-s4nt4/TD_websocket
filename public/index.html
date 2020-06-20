@@ -14,6 +14,29 @@
 </head>
 
 <body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyApP3eiwhwWpntA53CrWAec72MeRnsbXaw",
+      authDomain: "metro-d0b44.firebaseapp.com",
+      databaseURL: "https://metro-d0b44.firebaseio.com",
+      projectId: "metro-d0b44",
+      storageBucket: "metro-d0b44.appspot.com",
+      messagingSenderId: "136095907150",
+      appId: "1:136095907150:web:a0a0005df395b14543321f",
+      measurementId: "G-EZWSVJP87L"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
   <div id='bg-color'></div>
   <div>
     Message from server (RGB) : <span id='message'></span>
