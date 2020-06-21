@@ -18,6 +18,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
 
+
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -37,7 +38,7 @@
 
   <div id='bg-color'></div>
   <div>
-    Message from server (RGB) : <span id='message'></span>
+    <p>200627-Metro</p>
   </div>
 
   <!-- Add a placeholder for the Twitch embed -->
@@ -54,7 +55,7 @@
     var embed = new Twitch.Embed("twitch-embed", {
       width: 854,
       height: 480,
-      channel: "monstercat",
+      channel: "metro_kyoto",
       layout: "video",
       autoplay: false,
       // only needed if your site is also embedded on embed.example.com and othersite.example.com 
@@ -68,9 +69,11 @@
   </script>
 
   <script>
-    var colorRef = firebase.database().ref('color')
-    colorRef.on('value', function (snapshot) {
-
+    var db = firebase.database();
+    db.ref('color').on('child_changed', function (obj) {
+      receiveVal = obj.val()
+      console.log(receiveVal);
+      const color = receiveVal.split(".0");
 
       const sketch = function (p) {
         p.setup = function () {
@@ -80,7 +83,7 @@
         }
 
         p.draw = function () {
-          p.background(100, 0, 0);
+          p.background(color[0], color[1], color[2]);
         }
       }
 
